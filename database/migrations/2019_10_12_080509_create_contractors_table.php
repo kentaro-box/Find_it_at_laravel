@@ -13,7 +13,7 @@ class CreateContractorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('_contractors', function (Blueprint $table) {
+        Schema::create('contractors', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('company_name');
@@ -34,6 +34,6 @@ class CreateContractorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_contractors');
+        Schema::dropIfExists('contractors');
     }
 }

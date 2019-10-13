@@ -70,10 +70,12 @@
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}">相談者Login</a>
+                        <a href="{{ route('contractor_login') }}">事業者Login</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('contractor_register') }}">新規事業者登録</a>
+                            <a href="{{ route('register') }}">相談者登録</a>
                         @endif
                     @endauth
                 </div>

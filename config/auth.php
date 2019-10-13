@@ -46,6 +46,11 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        'contractor' => [
+            'driver' => 'session',
+            'provider' => 'contractor',
+        ],
+        
     ],
 
     /*
@@ -69,6 +74,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+
+        'contractor' => [
+            'driver' => 'eloquent',
+            'model' => App\Contractor::class,
         ],
 
         // 'users' => [
@@ -95,6 +105,12 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+
+        'contractor' => [
+            'provider' => 'contractor',
             'table' => 'password_resets',
             'expire' => 60,
         ],
