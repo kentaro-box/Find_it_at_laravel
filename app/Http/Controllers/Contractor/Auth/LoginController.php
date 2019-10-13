@@ -45,7 +45,7 @@ class LoginController extends Controller
         return Auth::guard('contractor');
     }
 
-    public function showAdminLoginForm()
+    public function showContractorLoginForm()
     {
         return view('contractor.auth.login');
     }
