@@ -18,6 +18,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['prefix' => 'user'], function () {
+
+    Route::group(['prefix' => 'publish', 'as' => 'publish.'], function () {
+        Route::resource('/', 'Users\PublishController', ['except' => ['index']]);
+    });
+    
+});
 
 
 Route::group(['prefix' => 'contractor'], function () {
@@ -36,4 +43,6 @@ Route::group(['prefix' => 'contractor'], function () {
     //Route::post('password/reset', 'Contractor\Auth\ResetPasswordController@reset');
 
     Route::get('home', 'Contractor\HomeController@index')->name('contractor_home');
+
+        
 });

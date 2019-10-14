@@ -48,7 +48,11 @@ return [
         ],
         'contractor' => [
             'driver' => 'session',
-            'provider' => 'contractor',
+            'provider' => 'contractors',
+        ],
+        'user' => [
+            'driver' => 'session',
+            'provider' => 'users',
         ],
         
     ],
@@ -76,7 +80,7 @@ return [
             'model' => App\User::class,
         ],
 
-        'contractor' => [
+        'contractors' => [
             'driver' => 'eloquent',
             'model' => App\Contractor::class,
         ],
@@ -110,7 +114,7 @@ return [
         ],
 
         'contractor' => [
-            'provider' => 'contractor',
+            'provider' => 'contractors',
             'table' => 'password_resets',
             'expire' => 60,
         ],
