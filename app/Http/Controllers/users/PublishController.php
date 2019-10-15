@@ -4,7 +4,7 @@ namespace App\Http\Controllers\users;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Http\Request\PublishRequest;
+use App\Http\Requests\PublishRequest;
 use App\User;
 use App\Post;
 use Auth;
@@ -42,7 +42,7 @@ class PublishController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PublishRequest $request)
     {
         $post = New Post;
         // dd($request);
