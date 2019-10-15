@@ -18,12 +18,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::group(['prefix' => 'user'], function () {
 
-    Route::group(['prefix' => 'publish', 'as' => 'publish.'], function () {
-        Route::resource('/', 'Users\PublishController', ['except' => ['index']]);
-    });
-    
+
+Route::group(['prefix' => 'user'], function () {
+    Route::get('/publish/show/{id}', 'Users\PublishController@show')->name('publish.show');
+    Route::get('/publish/create', 'Users\PublishController@create')->name('publish.create');
+    Route::post('/publish/store', 'Users\PublishController@store')->name('publish.store');
+    Route::get('/publish/update', 'Users\PublishController@update')->name('publish.update');
+
 });
 
 

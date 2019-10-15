@@ -4,7 +4,10 @@ namespace App\Http\Controllers\users;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\Request\PublishRequest;
 use App\User;
+use App\Post;
+use Auth;
 
 class PublishController extends Controller
 {
@@ -41,7 +44,16 @@ class PublishController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = New Post;
+        // dd($request);
+        $data = $request->all();
+        if (isset($data['image'])) {
+            $filePath = $data['image']->store('public/images');
+            $data['image'] = str_replace('public/images/', '', $filePath);
+        }
+        $data['user_id'] = Auth::user()->id;
+        $post->fill($data)->save();
+        return redirect()->route("home");
     }
 
     /**
@@ -52,7 +64,8 @@ class PublishController extends Controller
      */
     public function show($id)
     {
-        return view('user.publish', compact('id'));
+        $posts = Post::where('user_id', $id)->get();
+        return view('user.publish.show', compact('posts'));
     }
 
     /**
