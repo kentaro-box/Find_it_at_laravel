@@ -24,6 +24,7 @@ class PublishRequest extends FormRequest
     public function rules()
     {
         return [
+            'title' => 'required|max:255',
             'image' => 'file|mimes:jpeg,png,jpg,gif|max:2048' 
         ];
     }
