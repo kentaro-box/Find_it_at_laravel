@@ -24,8 +24,10 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/publish/show/{id}', 'Users\PublishController@show')->name('publish.show');
     Route::get('/publish/create', 'Users\PublishController@create')->name('publish.create');
     Route::post('/publish/store', 'Users\PublishController@store')->name('publish.store');
-    Route::get('/publish/update', 'Users\PublishController@update')->name('publish.update');
-    Route::get('publish/delete/{post_id}', 'Users\PublishController@destroy')->name('publish.delete');
+    Route::get('/publish/edit/{post_id}', 'Users\PublishController@edit')->name('publish.edit');
+    Route::get('/publish/delete/{post_id}', 'Users\PublishController@destroy')->name('publish.delete');
+    Route::put('/publish/update/{post_id}', 'Users\PublishController@update')->name('publish.update');
+
 });
 
 

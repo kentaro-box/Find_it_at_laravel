@@ -74,9 +74,10 @@ class PublishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post_id)
     {
-        //
+        $post = Post::find($post_id)->first();
+        return view('user.publish.edit', compact('post'));
     }
 
     /**
@@ -86,9 +87,17 @@ class PublishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(PublishRequest $request, Post $post_id)
+    {   
+        $post = Post::find($post_id)->first();
+        $data = $request->all();
+        if (isset($data['image'])) {
+            $filePath = $data['image']->store('public/images');
+            $data['image'] = str_replace('public/images/', '', $filePath);
+        }
+        $data['user_id'] = Auth::user()->id;
+        $post->fill($data)->save();
+        return redirect()->route("home");
     }
 
     /**
@@ -99,8 +108,7 @@ class PublishController extends Controller
      */
     public function destroy(Post $post_id)
     {
-        $delete_post = Post::find($post_id)->first();
-        $delete_post->delete();
+        $delete_post = Post::find($post_id)->first()->delete();
         return redirect()->route('home')->with('message', '削除完了');
     }
 }

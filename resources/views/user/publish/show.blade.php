@@ -25,7 +25,7 @@
             <a href="{{ route('publish.delete', ['post_id' => $post->id]) }}" class="btn btn-danger">削除</a>
             </form>
            
-            <a href="" class="btn btn-warning">編集</a>
+            <a href="{{ route('publish.edit', ['post_id' => $post->id]) }}" class="btn btn-warning">編集</a>
             
 
         </div>
