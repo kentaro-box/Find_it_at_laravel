@@ -21,7 +21,7 @@
         <div class="form-row">
             <div class="form-group col-md-6 mb-4">
                 <label for="input_material">原料の手配</label>
-            <select name="material" id="input_material" class="form-control">
+                <select name="material" id="input_material" class="form-control">
                     <option value="相談希望" @if(old('material')=='相談希望') selected  @endif>相談希望</option>
                     <option value="原料こちらから送ります" @if(old('material')=='原料こちらから送ります') selected  @endif>原料こちらから送ります</option>
                     <option value="そちらで調達願います" @if(old('material')=='そちらで調達願います') selected  @endif>そちらで調達願います</option>

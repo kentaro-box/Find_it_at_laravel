@@ -25,6 +25,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/publish/create', 'Users\PublishController@create')->name('publish.create');
     Route::post('/publish/store', 'Users\PublishController@store')->name('publish.store');
     Route::get('/publish/update', 'Users\PublishController@update')->name('publish.update');
+    Route::get('publish/delete/{post_id}', 'Users\PublishController@destroy')->name('publish.delete');
 });
 
 

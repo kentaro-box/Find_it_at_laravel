@@ -20,13 +20,16 @@
         <p>{{ $post->first_delivery_date }}</p>
         <p>{{ $post->finished_use }}</p>
         <p>{{ $post->created_at }}</p>
-        <form action="">
-
-        </form>
-
-        <form action="">
+        <div class="d-flex">
+            <form action="">
+            <a href="{{ route('publish.delete', ['post_id' => $post->id]) }}" class="btn btn-danger">削除</a>
+            </form>
+           
+            <a href="" class="btn btn-warning">編集</a>
             
-        </form>
+
+        </div>
+        
     @endforeach
     {{-- 削除および編集ボタンつける --}}
         

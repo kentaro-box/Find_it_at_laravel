@@ -97,8 +97,10 @@ class PublishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post_id)
     {
-        //
+        $delete_post = Post::find($post_id)->first();
+        $delete_post->delete();
+        return redirect()->route('home')->with('message', '削除完了');
     }
 }

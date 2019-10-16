@@ -27,6 +27,7 @@ class CreatePostsTable extends Migration
             $table->string('finished_use')->nullable()->comment('いつ頃まで使う');
             $table->integer('user_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
