@@ -4,7 +4,10 @@ namespace App\Http\Controllers\users;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\PublishRequest;
 use App\User;
+use App\Post;
+use Auth;
 
 class PublishController extends Controller
 {
@@ -39,9 +42,18 @@ class PublishController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PublishRequest $request)
     {
-        //
+        $post = New Post;
+        // dd($request);
+        $data = $request->all();
+        if (isset($data['image'])) {
+            $filePath = $data['image']->store('public/images');
+            $data['image'] = str_replace('public/images/', '', $filePath);
+        }
+        $data['user_id'] = Auth::user()->id;
+        $post->fill($data)->save();
+        return redirect()->route("home");
     }
 
     /**
@@ -52,7 +64,8 @@ class PublishController extends Controller
      */
     public function show($id)
     {
-        return view('user.publish', compact('id'));
+        $posts = Post::where('user_id', $id)->get();
+        return view('user.publish.show', compact('posts'));
     }
 
     /**
@@ -61,9 +74,10 @@ class PublishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post_id)
     {
-        //
+        $post = Post::find($post_id)->first();
+        return view('user.publish.edit', compact('post'));
     }
 
     /**
@@ -73,9 +87,17 @@ class PublishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(PublishRequest $request, Post $post_id)
+    {   
+        $post = Post::find($post_id)->first();
+        $data = $request->all();
+        if (isset($data['image'])) {
+            $filePath = $data['image']->store('public/images');
+            $data['image'] = str_replace('public/images/', '', $filePath);
+        }
+        $data['user_id'] = Auth::user()->id;
+        $post->fill($data)->save();
+        return redirect()->route("home");
     }
 
     /**
@@ -84,8 +106,9 @@ class PublishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post_id)
     {
-        //
+        $delete_post = Post::find($post_id)->first()->delete();
+        return redirect()->route('home')->with('message', '削除完了');
     }
 }

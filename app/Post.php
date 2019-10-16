@@ -15,10 +15,9 @@ class Post extends Authenticatable
         'deadline',
         'material',
         'amount', 
-        'frequency', 
-        'asking_price', 
+        'frequency',
+        'asking_price',
         'first_delivery_date', 
-        'getting_start', 
         'finished_use', 
         'user_id', 
     ];

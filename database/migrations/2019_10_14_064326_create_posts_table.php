@@ -24,10 +24,10 @@ class CreatePostsTable extends Migration
             $table->string('frequency')->comment('使用頻度');
             $table->string('asking_price')->comment('希望価格');
             $table->date('first_delivery_date')->comment('希望初回納品日');
-            $table->date('getting_start')->comment('いつから');
-            $table->date('finished_use')->comment('いつまで');
+            $table->string('finished_use')->nullable()->comment('いつ頃まで使う');
             $table->integer('user_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
